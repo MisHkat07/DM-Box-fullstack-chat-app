@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://db.onlinewebfonts.com/c/0c5e6f133b0b25edfed47aca4ab57676?family=Segoe+UI+Historic)');
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans';
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: 1px;
+  }
+}
+body {
+  background-color: #111619;
+  font-family: 'Noto Sans', Segoe UI Historic, Segoe UI, 'Roboto', Helvetica, Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}

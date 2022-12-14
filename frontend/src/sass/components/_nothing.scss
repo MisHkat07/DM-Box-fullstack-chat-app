@@ -1,0 +1,20 @@
+.nothing {
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+     h4 {
+      margin-top: 15px;
+   }
+  .nothing-header {
+   color: #eeefff;
+
+  }
+  .nothing-image {
+   img {
+      width: 200px;
+   }
+  }
+}

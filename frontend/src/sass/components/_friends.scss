@@ -1,0 +1,101 @@
+.friends {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: #95bae400 #c2d2e400;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.144);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #eeefff65;
+  }
+  .hover-friend.active {
+    background-color: rgba(43, 51, 85, 0.315);
+    .fr-name {
+           color: #5ed3f0 !important;
+    }
+  }
+  .hover-friend {
+    cursor: pointer;
+    &:hover {
+     
+      background-color: rgba(43, 51, 85, 0.568);
+    }
+    .friend {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      padding: 7px 15px;
+      border-bottom: 1px solid #21315652;
+      .friend-image {
+        .image {
+          width: 45px;
+          height: 45px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin-right: 8px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .friend-name-seen {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .friend-name {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+         align-items: flex-start;
+         justify-content: center;
+         flex-direction: column;
+
+          h4 {
+            color: #eeefff;
+            font-weight: 300;
+          }
+          .message-time {
+            span {
+              font-size: 12px;
+              color: #eeefff65;
+            }
+          }
+        }
+        .seen-unseen-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 13px;
+            height: 13px;
+           border-radius: 50%;
+          }
+          .seen-icon {
+            width: 13px;
+            height: 13px;
+           border-radius: 50%;
+           background-color: #5ed3f0;
+          }
+        }
+      }
+    }
+  }
+}

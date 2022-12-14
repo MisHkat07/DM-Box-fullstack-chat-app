@@ -1,0 +1,204 @@
+.msg-show {
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scrollbar-color: #95bae400 #c2d2e400;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.144);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #eeefff65;
+  }
+  .my-msg {
+    float: right;
+    margin: 3px 0px;
+    .my-texts {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      width: 400px;
+      .msg {
+        p {
+          border-bottom-right-radius: 0px;
+          background-color: #5ed3f0;
+          color: rgb(0, 0, 0);
+        }
+      }
+    }
+    .msg-time {
+      text-align: end;
+      font-size: 12px;
+      color: rgba(128, 128, 128, 0.562);
+    }
+  }
+  .friend-msg {
+    float: left;
+    .friend-texts {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      width: 400px;
+      .msg {
+        p {
+          border-top-left-radius: 0px;
+          background-color: #313c5a81;
+          color: #fdfefe;
+        }
+      }
+    }
+     .msg-time {
+      text-align: start;
+      font-size: 12px;
+      color: rgba(128, 128, 128, 0.562);
+    }
+  }
+}
+.image-msg-time,
+.image-msg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  .msg {
+    text-align: start;
+
+    p {
+      -webkit-box-shadow: 3px 2px 1px rgba(0, 0, 0, 0.432);
+              box-shadow: 3px 2px 1px rgba(0, 0, 0, 0.432);
+      max-width: 450px;
+      height: auto;
+      border-radius: 15px;
+      padding: 8px;
+      font-size: 0.95rem;
+      .twemoji {
+        width: 32px;
+        margin-right:5px;
+      }
+    }
+    img {
+      width: 130px;
+      height: auto;
+      border-radius: 10px;
+      overflow: hidden;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+  }
+  .msg-time {
+    font-size: 12px;
+    color: rgba(128, 128, 128, 0.562);
+  }
+}
+.image-msg-time {
+  margin: 5px 0px;
+}
+.typing-field {
+    display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+             .typing-msg {
+              .chat-bubble {
+                  display: inline-block;
+                }
+              
+                .typing {
+                  align-items: center;
+                  display: flex;
+                  height: 10px;
+                }
+              
+                .typing .dot {
+                  animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
+                  background-color: #eeefff; //rgba(20,105,69,.7);
+                  border-radius: 50%;
+                  height: 7px;
+                  margin-right: 4px;
+                  vertical-align: middle;
+                  width: 7px;
+                  display: inline-block;
+                }
+              
+                .typing .dot:nth-child(1) {
+                  animation-delay: 200ms;
+                }
+              
+                .typing .dot:nth-child(2) {
+                  animation-delay: 300ms;
+                }
+              
+                .typing .dot:nth-child(3) {
+                  animation-delay: 400ms;
+                }
+              
+                .typing .dot:last-child {
+                  margin-right: 0;
+                }
+              
+                @keyframes mercuryTypingAnimation {
+                  0% {
+                    transform: translateY(0px);
+                    background-color: #9cff88; // rgba(20,105,69,.7);
+                  }
+              
+                  28% {
+                    transform: translateY(-7px);
+                    background-color: #7dabff; //rgba(20,105,69,.4);
+                  }
+              
+                  44% {
+                    transform: translateY(0px);
+                    background-color: #5ef0ce; //rgba(20,105,69,.2);
+                  }
+                }
+             }
+      
+}
+.typing-message {
+  margin-left: 10px;
+ 
+}
+
+ #emo {
+  background: transparent;
+  font-size: 28px;
+  padding: 0px;
+  cursor: pointer;
+  -webkit-box-shadow:none;
+          box-shadow:none;
+}

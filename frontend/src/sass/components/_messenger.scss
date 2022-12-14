@@ -1,0 +1,153 @@
+.messenger {
+  width: 100%;
+  height: 100vh;
+  background-color: #141b2bf0;
+
+  .row {
+    height: 100%;
+    .col-3 {
+      .left-side {
+        padding: 5px 0px;
+        border-right: 1px solid #213156bf;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        .top {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
+          margin: 12px 8px;
+          .image-name {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            cursor: pointer;
+            .image {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+              }
+            }
+            .name {
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              h4 {
+                padding-left: 10px;
+                font-weight: 600;
+                color: #5ed3f0;
+              }
+            }
+          }
+          .icons {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            .icon {
+              height: 35px;
+              width: 35px;
+              font-size: 20px;
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              border-radius: 50%;
+              margin-left: 15px;
+              color: #5ed3f0;
+              cursor: pointer;
+              label {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                margin-bottom: 0px;
+              }
+              &:hover {
+                background-color: rgba(56, 66, 112, 0.568);
+              }
+            }
+          }
+        }
+        .friend-search {
+          padding: 0px 8px;
+          .search {
+            -webkit-filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%;
+            height: 40px;
+            background-color: rgb(13, 18, 29);
+            border-radius: 50px;
+
+            margin: 20px 0px;
+            input {
+              color: white;
+              font-size: 15px;
+              &::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: #eeefff81;
+              }
+              &::-moz-placeholder {
+                /* Firefox 19+ */
+                color: #eeefff81;
+              }
+            }
+            button {
+              padding: 12px;
+              border-bottom-left-radius: 50px;
+              border-top-left-radius: 50px;
+              border: none;
+              color: #eeefff81;
+              font-size: 20px;
+              background-color: transparent;
+            }
+            .form-control {
+              width: 100%;
+              padding-left: 0px;
+              border-bottom-right-radius: 50px;
+              border-top-right-radius: 50px;
+              background-color: #fff0;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

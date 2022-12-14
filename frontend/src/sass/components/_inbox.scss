@@ -1,0 +1,135 @@
+.col-9 {
+  .right-side {
+    height: 100%;
+    .row {
+      height: 100%;
+      .col-8 {
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        transition: all 0.4s;
+        .message-box {
+          height: 100vh;
+          border-right: 1px solid #213156bf;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
+          .header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 12px 10px;
+            border-bottom: 1px solid #213156bf;
+
+            .image-name {
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              .image {
+                width: 40px;
+                height: 40px;
+
+                position: relative;
+                img {
+                  border-radius: 50%;
+                  width: 100%;
+                  height: 100%;
+                  -o-object-fit: cover;
+                  object-fit: cover;
+                }
+                .active-icon {
+                  position: absolute;
+                  bottom: 0px;
+                  right: 0px;
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 50%;
+                  background-color: chartreuse;
+                }
+              }
+              .name {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                h3 {
+                  padding-left: 10px;
+                  color: #5ed3f0;
+                }
+              }
+            }
+            .icons {
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              .icon {
+                height: 35px;
+                width: 35px;
+                font-size: 20px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                border-radius: 50%;
+                margin-left: 15px;
+                color: #5ed3f0;
+                cursor: pointer;
+                label {
+                  cursor: pointer;
+                  display: -webkit-box;
+                  display: -ms-flexbox;
+                  display: flex;
+                  margin-bottom: 0px;
+                }
+                &:hover {
+                  background-color: rgba(56, 66, 112, 0.568);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #dot {
+      display: none;
+    }
+    #dot:checked ~ .row .col-4 {
+      display: none;
+    }
+    #dot:checked ~ .row .col-8 {
+      width: 100%;
+    }
+    #dot:checked ~ .row .col-8 .msg-show .my-msg .my-texts {
+      width: 600px;
+    }
+    #dot:checked ~ .row .col-8 .msg-show .friend-msg .friend-texts {
+      width: 600px;
+    }
+  }
+}
