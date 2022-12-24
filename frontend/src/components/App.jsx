@@ -1,21 +1,22 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import '../App.css';
-import ErrorBoundary from './ErrorBoundary';
-import Login from './Login';
-import Register from './Register';
-import Messenger from './Messenger'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "../App.css";
+import ErrorBoundary from "./ErrorBoundary";
+import Login from "./Login";
+import Register from "./Register";
+import Messenger from "./Messenger";
+import React from "react";
 
 function App() {
   return (
-      <BrowserRouter>
-    <ErrorBoundary>
+    <BrowserRouter>
+      <ErrorBoundary>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Messenger />} />
         </Routes>
-    </ErrorBoundary>
-      </BrowserRouter>
+      </ErrorBoundary>
+    </BrowserRouter>
   );
 }
 

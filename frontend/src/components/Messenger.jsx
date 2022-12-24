@@ -2,13 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
+import {useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import toast, { Toaster } from "react-hot-toast";
 import useSound from "use-sound";
 import notificationSound from "../audio/Notification.mp3";
 import sentSound from "../audio/sent-sound.mp3";
-import { SOCKET_MESSAGE, UPDATE_FRIEND_MESSAGE } from "../store/type/messenger-type";
+import {
+  SOCKET_MESSAGE,
+  UPDATE_FRIEND_MESSAGE,
+} from "../store/type/messenger-type";
 import {
   getFriends,
   getMessage,
@@ -26,7 +30,7 @@ const Messenger = () => {
   const { friends, message, messageSendSuccess } = useSelector(
     (state) => state.messenger
   );
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, authenticate } = useSelector((state) => state.auth);
   const [notifySound] = useSound(notificationSound);
   const [sendingSound] = useSound(sentSound);
   const [currentFriend, setCurrentFriend] = useState("");
@@ -36,7 +40,12 @@ const Messenger = () => {
   const [typingMessage, setTypingMessage] = useState("");
   const [emojiShow, setEmojiShow] = useState(false);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!authenticate) navigate("/login");
+  }, []);
 
   useEffect(() => {
     socket.current = io("ws://localhost:8000");
@@ -181,13 +190,13 @@ const Messenger = () => {
   useEffect(() => {
     if (messageSendSuccess) {
       socket.current.emit("sendMessage", message[message.length - 1]);
-       dispatch({
-         type: "UPDATE_FRIEND_MESSAGE",
-         payload: {
-           messageInfo: message[message.length - 1],
-         },
-       });
-       dispatch({ type: "MESSAGE_SEND_SUCCESS_CLEAR" });
+      dispatch({
+        type: "UPDATE_FRIEND_MESSAGE",
+        payload: {
+          messageInfo: message[message.length - 1],
+        },
+      });
+      dispatch({ type: "MESSAGE_SEND_SUCCESS_CLEAR" });
     }
   }, [messageSendSuccess]);
 
@@ -282,7 +291,7 @@ const Messenger = () => {
                       </div>
                     );
                   })
-                : "No Friend!"}
+                : ""}
             </div>
           </div>
         </div>

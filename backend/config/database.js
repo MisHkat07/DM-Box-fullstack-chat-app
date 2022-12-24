@@ -7,7 +7,7 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
-    console.log('🔰 Database has Connected!');
+    console.log('🔰Database has Connected!');
   } catch (error) {
     console.log(error);
   }

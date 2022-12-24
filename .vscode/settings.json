@@ -1,3 +1,5 @@
 {
-  "editor.renderLineHighlight": "none"
+  "editor.renderLineHighlight": "none",
+  "javascript.format.semicolons": "insert",
+  "javascript.validate.enable": false
 }
