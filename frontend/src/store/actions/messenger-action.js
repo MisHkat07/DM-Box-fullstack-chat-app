@@ -64,3 +64,25 @@ export const ImageMessageSend = (data) => {
     }
   };
 };
+
+export const seenMessage = (msg) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`/seen-message`, msg);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+ 
+export const updateMessage = (msg) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`/delivered-message`, msg);
+      console.log('🎯response', response)
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+ 

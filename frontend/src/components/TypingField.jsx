@@ -702,7 +702,7 @@ const TypingField = ({
           className="form-control msg-input"
           name="message"
           id="message"
-          onKeyPress="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+          // onKeyPress="this.style.width = ((this.value.length + 1) * 8) + 'px';"
           placeholder="Aa"
         />
         <label onClick={emojiShowHandler} htmlFor="emoji" className="emo">

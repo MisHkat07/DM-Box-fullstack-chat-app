@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { RiCheckboxCircleFill, RiCheckboxCircleLine } from "react-icons/ri";
 
 const Friends = ({ friend, userInfo }) => {
   const { friendInfo, messageInfo } = friend;
@@ -37,11 +38,26 @@ const Friends = ({ friend, userInfo }) => {
         </div>
         {userInfo?.id === messageInfo?.senderId ? (
           <div className="seen-unseen-icon">
-            <img src={`./image/${friendInfo.image}`} alt="" />
+            {messageInfo.status === "seen" ? (
+              <img src={`./image/${friendInfo.image}`} alt="" />
+            ) : messageInfo.status === "delivered" ? (
+              <div className="delivered">
+                <RiCheckboxCircleFill />
+              </div>
+            ) : (
+              <div className="unseen">
+                <RiCheckboxCircleLine />
+              </div>
+            )}
           </div>
         ) : (
           <div className="seen-unseen-icon">
-            <div className="seen-icon"></div>
+            {messageInfo?.status !== undefined &&
+            messageInfo?.status !== "seen" ? (
+              <div className="seen-icon"></div>
+            ) : (
+              ""
+            )}
           </div>
         )}
       </div>

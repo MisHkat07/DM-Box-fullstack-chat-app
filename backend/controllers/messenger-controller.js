@@ -154,3 +154,41 @@ module.exports.sendImageDB = async (req, res) => {
     }
   });
 };
+
+module.exports.messageSeen = async (req, res) => {
+  const messageID = req.body._id;
+
+  await messageModel
+    .findByIdAndUpdate({ _id: messageID }, { status: "seen" })
+    .then(() => {
+      res.json({
+        success: true,
+      });
+    })
+    .catch(() => {
+      res.status(500).json({
+        error: {
+          errorMessage: "Internal Server Error!",
+        },
+      });
+    });
+};
+
+module.exports.deliveredMsg = async (req, res) => {
+  const messageID = req.body._id;
+
+  await messageModel
+    .findByIdAndUpdate({ _id: messageID }, { status: "delivered" })
+    .then(() => {
+      res.json({
+        success: true,
+      });
+    })
+    .catch(() => {
+      res.status(500).json({
+        error: {
+          errorMessage: "Internal Server Error!",
+        },
+      });
+    });
+};

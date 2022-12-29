@@ -1,10 +1,5 @@
 .friends {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   height: 100%;
   overflow: auto;
@@ -35,8 +30,6 @@
       background-color: rgba(43, 51, 85, 0.568);
     }
     .friend {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
       width: 100%;
       padding: 7px 15px;
@@ -51,7 +44,8 @@
           img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            -o-object-fit: cover;
+               object-fit: cover;
           }
         }
       }
@@ -61,8 +55,6 @@
         justify-content: space-between;
         align-items: center;
         .friend-name {
-          display: -webkit-box;
-          display: -ms-flexbox;
           display: flex;
          align-items: flex-start;
          justify-content: center;
@@ -87,6 +79,9 @@
             width: 13px;
             height: 13px;
            border-radius: 50%;
+          }
+          .unseen, .delivered {
+            color:#5ed3f0;
           }
           .seen-icon {
             width: 13px;

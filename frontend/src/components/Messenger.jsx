@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import toast, { Toaster } from "react-hot-toast";
@@ -10,6 +10,7 @@ import useSound from "use-sound";
 import notificationSound from "../audio/Notification.mp3";
 import sentSound from "../audio/sent-sound.mp3";
 import {
+  SEEN_MESSAGE,
   SOCKET_MESSAGE,
   UPDATE_FRIEND_MESSAGE,
 } from "../store/type/messenger-type";
@@ -18,11 +19,14 @@ import {
   getMessage,
   ImageMessageSend,
   messageSend,
+  seenMessage,
+  updateMessage,
 } from "./../store/actions/messenger-action";
 import ActiveFriend from "./ActiveFriend";
 import Friends from "./Friends";
 import Inbox from "./Inbox";
 import Nothing from "./Nothing";
+import { DELIVER_MESSAGE } from './../store/type/messenger-type';
 
 const Messenger = () => {
   const scrollRef = useRef();
@@ -55,6 +59,22 @@ const Messenger = () => {
     socket.current.on("getTypingMessage", (data) => {
       setTypingMessage(data);
     });
+    socket.current.on("messageSeenRes", msg => {
+      dispatch({
+        type: SEEN_MESSAGE,
+        payload: {
+          messageInfo: msg,
+        },
+      });
+    });
+    socket.current.on("deliveredMessageRes", (msg) => {
+      dispatch({
+        type: DELIVER_MESSAGE,
+        payload: {
+          messageInfo: msg,
+        },
+      });
+    });
   }, []);
 
   useEffect(() => {
@@ -69,13 +89,18 @@ const Messenger = () => {
             message: socketMessage,
           },
         });
-      }
+
+        dispatch(seenMessage(socketMessage));
+        socket.current.emit('messageSeen', socketMessage)
+        
       dispatch({
         type: UPDATE_FRIEND_MESSAGE,
         payload: {
           messageInfo: socketMessage,
+          status : 'seen'
         },
       });
+      }
     }
   }, [currentFriend, dispatch, socketMessage, userInfo.id]);
 
@@ -87,6 +112,15 @@ const Messenger = () => {
     ) {
       notifySound();
       toast.success(`${socketMessage.senderName} sent a New Message`);
+      dispatch(updateMessage(socketMessage));
+      socket.current.emit("deliveredMessage", socketMessage);
+      dispatch({
+        type: UPDATE_FRIEND_MESSAGE,
+        payload: {
+          messageInfo: socketMessage,
+          status: "delivered",
+        },
+      });
     }
   }, [currentFriend._id, notifySound, socketMessage, userInfo.id]);
 
@@ -168,16 +202,16 @@ const Messenger = () => {
       formData.append("image", e.target.files[0]);
       formData.append("imageName", newImageName);
 
-      socket.current.emit("sendMessage", {
-        senderId: userInfo.id,
-        senderName: userInfo.username,
-        recieverId: currentFriend._id,
-        time: new Date(),
-        message: {
-          text: "",
-          image: newImageName,
-        },
-      });
+      // socket.current.emit("sendMessage", {
+      //   senderId: userInfo.id,
+      //   senderName: userInfo.username,
+      //   recieverId: currentFriend._id,
+      //   time: new Date(),
+      //   message: {
+      //     text: "",
+      //     image: newImageName,
+      //   },
+      // });
       sendingSound();
       dispatch(ImageMessageSend(formData));
     }
