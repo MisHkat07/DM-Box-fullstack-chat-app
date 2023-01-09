@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
     io.emit("getUser", users);
   });
   socket.on("sendMessage", (data) => {
-    const user = findFriend(data?.recieverId);
+    const user = findFriend(data.recieverId);
     if (user !== undefined) {
       socket.to(user.socketID).emit("getMessage", data);
     }

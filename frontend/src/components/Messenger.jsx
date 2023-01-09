@@ -26,7 +26,7 @@ import ActiveFriend from "./ActiveFriend";
 import Friends from "./Friends";
 import Inbox from "./Inbox";
 import Nothing from "./Nothing";
-import { DELIVER_MESSAGE } from './../store/type/messenger-type';
+import { DELIVER_MESSAGE } from "./../store/type/messenger-type";
 
 const Messenger = () => {
   const scrollRef = useRef();
@@ -59,7 +59,7 @@ const Messenger = () => {
     socket.current.on("getTypingMessage", (data) => {
       setTypingMessage(data);
     });
-    socket.current.on("messageSeenRes", msg => {
+    socket.current.on("messageSeenRes", (msg) => {
       dispatch({
         type: SEEN_MESSAGE,
         payload: {
@@ -91,15 +91,15 @@ const Messenger = () => {
         });
 
         dispatch(seenMessage(socketMessage));
-        socket.current.emit('messageSeen', socketMessage)
-        
-      dispatch({
-        type: UPDATE_FRIEND_MESSAGE,
-        payload: {
-          messageInfo: socketMessage,
-          status : 'seen'
-        },
-      });
+        socket.current.emit("messageSeen", socketMessage);
+
+        dispatch({
+          type: UPDATE_FRIEND_MESSAGE,
+          payload: {
+            messageInfo: socketMessage,
+            status: "seen",
+          },
+        });
       }
     }
   }, [currentFriend, dispatch, socketMessage, userInfo.id]);
@@ -113,6 +113,7 @@ const Messenger = () => {
       notifySound();
       toast.success(`${socketMessage.senderName} sent a New Message`);
 
+      dispatch(updateMessage(socketMessage));
       socket.current.emit("deliveredMessage", socketMessage);
       dispatch({
         type: UPDATE_FRIEND_MESSAGE,
@@ -121,10 +122,8 @@ const Messenger = () => {
           status: "delivered",
         },
       });
-
-            dispatch(updateMessage(socketMessage));
     }
-  }, [currentFriend._id, notifySound, socketMessage, userInfo.id]);
+  }, [socketMessage]);
 
   useEffect(() => {
     socket.current.emit("addUser", userInfo.id, userInfo);
@@ -155,12 +154,6 @@ const Messenger = () => {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    const data = {
-      senderName: userInfo.username,
-      recieverId: currentFriend._id,
-      message: newMessage ? newMessage : "👋🏼",
-    };
-
     // socket.current.emit("sendMessage", {
     //   senderId: userInfo.id,
     //   senderName: userInfo.username,
@@ -171,17 +164,26 @@ const Messenger = () => {
     //     image: "",
     //   },
     // });
-    if ((newMessage && /\S/.test(newMessage)) || !newMessage) {
-      dispatch(messageSend(data));
-      sendingSound();
-    }
-    setNewMessage("");
-    setEmojiShow(false);
+
+    const data = {
+      senderName: userInfo.username,
+      recieverId: currentFriend._id,
+      message: newMessage ? newMessage : "👋🏼",
+    };
+
     socket.current.emit("typingMessage", {
       senderId: userInfo.id,
       recieverId: currentFriend._id,
       message: "",
     });
+
+    if ((newMessage && /\S/.test(newMessage)) || !newMessage) {
+      dispatch(messageSend(data));
+      
+      sendingSound();
+    }
+    setNewMessage("");
+    setEmojiShow(false);
   };
 
   const emojiHandler = (emoji) => {
@@ -242,7 +244,15 @@ const Messenger = () => {
 
   useEffect(() => {
     dispatch(getMessage(currentFriend?._id));
-  }, [dispatch, currentFriend?._id]);
+    if (friends.length > 0) {
+      dispatch({
+        type: "UPDATE",
+        payload: {
+          id: currentFriend?._id,
+        },
+      });
+    }
+  }, [currentFriend?._id]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });

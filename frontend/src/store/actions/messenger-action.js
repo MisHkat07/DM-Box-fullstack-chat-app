@@ -69,6 +69,7 @@ export const seenMessage = (msg) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`/seen-message`, msg);
+      console.log("🎯response", response);
     } catch (error) {
       console.log(error.response.data);
     }
