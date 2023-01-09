@@ -112,7 +112,7 @@ const Messenger = () => {
     ) {
       notifySound();
       toast.success(`${socketMessage.senderName} sent a New Message`);
-      dispatch(updateMessage(socketMessage));
+
       socket.current.emit("deliveredMessage", socketMessage);
       dispatch({
         type: UPDATE_FRIEND_MESSAGE,
@@ -121,6 +121,8 @@ const Messenger = () => {
           status: "delivered",
         },
       });
+
+            dispatch(updateMessage(socketMessage));
     }
   }, [currentFriend._id, notifySound, socketMessage, userInfo.id]);
 
