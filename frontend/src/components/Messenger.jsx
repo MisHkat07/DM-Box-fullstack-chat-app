@@ -47,9 +47,8 @@ const Messenger = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
     if (!authenticate) navigate("/login");
-  }, []);
+
 
   useEffect(() => {
     socket.current = io("ws://localhost:8000");
